@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'kotlin-android-extensions'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -35,9 +36,13 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+    apply plugin: "androidx.navigation.safeargs.kotlin"
 }
 
 dependencies {
+
+
 
 
     //Retrofit
@@ -62,6 +67,8 @@ dependencies {
 
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+
+
 
 
     def lifecycle_version = "2.5.1"

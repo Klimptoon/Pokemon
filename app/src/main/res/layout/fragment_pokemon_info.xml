@@ -3,8 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.PokemonInfo">
+    tools:context=".presentation.PokemonInfoFragment">
+
+
 
     <TextView
         android:id="@+id/tv_pokemon_name"
@@ -23,8 +26,8 @@
 
     <ImageView
         android:id="@+id/iv_pokemon_image"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +40,7 @@
         android:layout_marginTop="@dimen/space_16dp"
         android:text="@string/pokemon_type"
         android:textStyle="bold"
-        android:textSize="@dimen/text_16sp"
+        android:textSize="@dimen/text_24sp"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@id/iv_pokemon_image"
         app:layout_constraintEnd_toEndOf="@id/iv_pokemon_image"
@@ -47,23 +50,23 @@
 
     <ImageView
         android:id="@+id/iv_pokemon_weight"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_marginStart="125dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:layout_marginEnd="10dp"
         android:src="@drawable/ic_weight"
-        app:layout_constraintEnd_toStartOf="@id/iv_pokemon_height"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_pokemon_type" />
 
     <ImageView
         android:id="@+id/iv_pokemon_height"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_marginEnd="125dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:layout_marginStart="5dp"
         android:src="@drawable/ic_height"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_pokemon_type"
-        app:layout_constraintStart_toEndOf="@id/iv_pokemon_weight"
         />
 
 
@@ -72,6 +75,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/pokemon_weight"
+        android:layout_marginBottom="25dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/iv_pokemon_weight"
         app:layout_constraintEnd_toStartOf="@id/iv_pokemon_weight"
@@ -91,7 +95,7 @@
         app:layout_constraintEnd_toStartOf="@id/iv_pokemon_weight"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:textSize="@dimen/text_16sp" />
+        android:textSize="@dimen/text_20sp" />
 
     <TextView
         android:id="@+id/tv_height_number"
@@ -103,13 +107,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/iv_pokemon_height"
         app:layout_constraintStart_toEndOf="@id/iv_pokemon_height"
-        android:textSize="@dimen/text_16sp" />
+        android:textSize="@dimen/text_20sp" />
 
     <TextView
         android:id="@+id/tv_height"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/pokemon_height"
+        android:layout_marginBottom="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         android:textColor="@color/black"
         android:textStyle="bold"
@@ -117,15 +122,20 @@
         app:layout_constraintStart_toEndOf="@id/iv_pokemon_height"
         android:textSize="@dimen/text_16sp" />
 
+
+
     <Button
+        android:id="@+id/return_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/green"
+        android:background="@drawable/button_background"
         android:text="@string/return_screen"
-        app:layout_constraintStart_toStartOf="@id/iv_pokemon_weight"
-        app:layout_constraintEnd_toEndOf="@id/iv_pokemon_height"
+        app:layout_constraintStart_toStartOf="@id/iv_pokemon_image"
+        app:layout_constraintEnd_toEndOf="@id/iv_pokemon_image"
         app:layout_constraintTop_toBottomOf="@id/iv_pokemon_image"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="250dp"
         />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

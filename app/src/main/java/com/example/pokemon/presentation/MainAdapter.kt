@@ -25,6 +25,7 @@ class MainAdapter(val listener: PokemonAdapterListener) : PagingDataAdapter<Resu
                         listener.onClickPokemon(result)
                     }
                 }
+                tvPokemonId.text = "№ ${position+1}"
                 Glide.with(itemView)
                     .load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${position + 1}.png")
                     .into(ivPokemonImage)

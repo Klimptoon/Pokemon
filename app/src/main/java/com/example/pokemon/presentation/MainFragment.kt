@@ -11,6 +11,9 @@ import android.widget.Toast.LENGTH_LONG
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pokemon.R
@@ -29,6 +32,7 @@ class MainFragment : Fragment(), PokemonAdapterListener {
     lateinit var viewModel : MainFragmentViewModel
     lateinit var adapter: MainAdapter
     private lateinit var binding: FragmentMainBinding
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,7 +69,11 @@ class MainFragment : Fragment(), PokemonAdapterListener {
     }
 
     override fun onClickPokemon(result: Result) {
+        val bundle = Bundle()
+        bundle.putString("MyArg", result.name)
+        findNavController().navigate(R.id.action_mainFragment_to_courseFragment, bundle)
         Log.d("ff", "жмяк жмяк ${result.url} ${result.name}")
+
     }
 
 
