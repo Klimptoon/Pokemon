@@ -6,19 +6,28 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.pokemon.R
 import com.example.pokemon.data.network.responses.Result
 import com.example.pokemon.databinding.ItemBinding
 
-class MainAdapter : PagingDataAdapter<Result, MainAdapter.AdapterViewHolder>(COMPARATOR) {
+class MainAdapter(val listener: PokemonAdapterListener) : PagingDataAdapter<Result, MainAdapter.AdapterViewHolder>(COMPARATOR) {
 
 
 
     class AdapterViewHolder(item: View) : RecyclerView.ViewHolder(item) {
         private val binding = ItemBinding.bind(item)
-        fun bind(result: Result?) {
+        fun bind(result: Result?, listener : PokemonAdapterListener, position: Int) {
             with(binding) {
                 tvPokemonName.text = result?.name?.capitalize() ?: "Pikachu"
+                itemView.setOnClickListener {
+                    if (result != null) {
+                        listener.onClickPokemon(result)
+                    }
+                }
+                Glide.with(itemView)
+                    .load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${position + 1}.png")
+                    .into(ivPokemonImage)
             }
         }
     }
@@ -37,7 +46,7 @@ class MainAdapter : PagingDataAdapter<Result, MainAdapter.AdapterViewHolder>(COM
     }
 
     override fun onBindViewHolder(holder: AdapterViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), listener, position = position)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterViewHolder {

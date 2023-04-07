@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import android.widget.Toast.LENGTH_LONG
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -14,11 +16,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pokemon.R
 import com.example.pokemon.app.App
 import com.example.pokemon.data.network.PokemonListPageSource
+import com.example.pokemon.data.network.responses.Result
 import com.example.pokemon.databinding.FragmentMainBinding
 import javax.inject.Inject
 
 
-class MainFragment : Fragment() {
+class MainFragment : Fragment(), PokemonAdapterListener {
 
 
     @Inject
@@ -44,7 +47,7 @@ class MainFragment : Fragment() {
 
         viewModel = ViewModelProvider(this, vmFactory)
             .get(MainFragmentViewModel::class.java)
-        adapter = MainAdapter()
+        adapter = MainAdapter(this)
         binding.rv.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.rv.adapter = adapter
 
@@ -59,6 +62,10 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+    }
+
+    override fun onClickPokemon(result: Result) {
+        Log.d("ff", "жмяк жмяк ${result.url} ${result.name}")
     }
 
 
