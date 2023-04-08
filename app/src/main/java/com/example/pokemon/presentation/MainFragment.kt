@@ -29,10 +29,9 @@ class MainFragment : Fragment(), PokemonAdapterListener {
 
     @Inject
     lateinit var vmFactory: MainViewModelFactory
-    lateinit var viewModel : MainFragmentViewModel
-    lateinit var adapter: MainAdapter
+    lateinit var viewModel: MainFragmentViewModel
+    private lateinit var adapter: MainAdapter
     private lateinit var binding: FragmentMainBinding
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,9 +55,16 @@ class MainFragment : Fragment(), PokemonAdapterListener {
         binding.rv.adapter = adapter
 
 
-        viewModel.list.observe(viewLifecycleOwner, Observer {
+        viewModel.getPokemonList()
+
+
+        viewModel.pokemonList.observe(viewLifecycleOwner, Observer {
+            Log.d("ff", it.toString())
             adapter.submitData(lifecycle, it)
+
         })
+
+
 
         return binding.root
     }
@@ -73,7 +79,6 @@ class MainFragment : Fragment(), PokemonAdapterListener {
         bundle.putString("MyArg", result.name)
         findNavController().navigate(R.id.action_mainFragment_to_courseFragment, bundle)
         Log.d("ff", "жмяк жмяк ${result.url} ${result.name}")
-
     }
 
 

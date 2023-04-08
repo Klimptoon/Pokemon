@@ -12,12 +12,11 @@ class AppModule {
     @Provides
     fun provideMainViewModelFactory(
         pokemonRepository: PokemonRepository,
-        getPokemonUseCase: GetPokemonUseCase,
+
 
     ): MainViewModelFactory {
         return MainViewModelFactory(
-            getPokemonUseCase = getPokemonUseCase,
-            pokemonRepository
+            pokemonRepository = pokemonRepository
         )
     }
 }

@@ -12,14 +12,16 @@ import com.example.pokemon.util.Resourse
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class PokemonInfoViewModel (
+class PokemonInfoViewModel(
     private val getPokemonUseCase: GetPokemonUseCase
-    ) : ViewModel() {
-
+) : ViewModel() {
 
 
     private var _pokemonInfo = MutableLiveData<PokemonInfo>()
     var pokemonInfo: LiveData<PokemonInfo> = _pokemonInfo
+
+    private var _isConnected = MutableLiveData<Boolean>()
+    var isConnected: LiveData<Boolean> = _isConnected
 
 
     fun getPokemonInfo(name: String) {
@@ -30,9 +32,10 @@ class PokemonInfoViewModel (
                 listOfTypes.add(it.type.name)
                 Log.d("ff", listOfTypes.toString())
             }
-
+            _isConnected.value = true
             Log.d("ff", typeOfPokemon.toString())
-            when(pokemon) {
+            when (pokemon) {
+
                 is Resourse.Success -> {
                     val poke = PokemonInfo(
                         height = pokemon.data!!.height,
@@ -43,6 +46,10 @@ class PokemonInfoViewModel (
                         type = listOfTypes
                     )
                     _pokemonInfo.value = poke
+
+                }
+                is Resourse.Error -> {
+                    _isConnected.value = false
                 }
             }
         }

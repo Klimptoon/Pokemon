@@ -25,9 +25,6 @@ class PokemonListPageSource(
 
         return try {
             val pokemons = pokeApi.getPokemonList(PAGE_SIZE, pageIndex * PAGE_SIZE).results
-            Log.d("ff", "list " +  pokemons)
-
-
             return LoadResult.Page(
                 data = pokemons,
 

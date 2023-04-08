@@ -11,7 +11,7 @@ import com.example.pokemon.R
 import com.example.pokemon.data.network.responses.Result
 import com.example.pokemon.databinding.ItemBinding
 
-class MainAdapter(val listener: PokemonAdapterListener) : PagingDataAdapter<Result, MainAdapter.AdapterViewHolder>(COMPARATOR) {
+class MainAdapter(private val listener: PokemonAdapterListener) : PagingDataAdapter<Result, MainAdapter.AdapterViewHolder>(COMPARATOR) {
 
 
 
@@ -53,5 +53,9 @@ class MainAdapter(val listener: PokemonAdapterListener) : PagingDataAdapter<Resu
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item, parent, false)
         return AdapterViewHolder(view)
+    }
+
+    fun updateData() {
+
     }
 }

@@ -20,7 +20,7 @@ class PokemonInfoFragment : Fragment() {
 
     @Inject
     lateinit var vmFactory: PokemonInfoViewModelFactory
-    lateinit var viewModel : PokemonInfoViewModel
+    lateinit var viewModel: PokemonInfoViewModel
     private lateinit var binding: FragmentPokemonInfoBinding
     private lateinit var navController: NavController
 
@@ -67,6 +67,21 @@ class PokemonInfoFragment : Fragment() {
                 Glide.with(requireView())
                     .load(it.image)
                     .into(ivPokemonImage)
+            }
+        }
+
+        viewModel.isConnected.observe(viewLifecycleOwner) {
+            if (it == false) {
+                binding.tryButton.visibility = View.VISIBLE
+                binding.tvWhenNoConnection.visibility = View.VISIBLE
+                binding.returnButton.visibility = View.GONE
+                binding.tryButton.setOnClickListener {
+                    pokemonName?.let { it1 -> viewModel.getPokemonInfo(it1) }
+                }
+            } else {
+                binding.tryButton.visibility = View.GONE
+                binding.tvWhenNoConnection.visibility = View.GONE
+                binding.returnButton.visibility = View.VISIBLE
             }
         }
     }
