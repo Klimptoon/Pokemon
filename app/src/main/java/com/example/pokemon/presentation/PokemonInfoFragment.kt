@@ -34,9 +34,7 @@ class PokemonInfoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentPokemonInfoBinding.inflate(layoutInflater, container, false)
-
         viewModel = ViewModelProvider(this, vmFactory)[PokemonInfoViewModel::class.java]
-
         binding.returnButton.setOnClickListener {
             navController.navigate(R.id.action_courseFragment_to_mainFragment)
         }

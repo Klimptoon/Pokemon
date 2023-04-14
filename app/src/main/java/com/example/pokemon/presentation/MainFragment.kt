@@ -35,17 +35,12 @@ class MainFragment : Fragment(), PokemonAdapterListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         binding = FragmentMainBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this, vmFactory)[MainFragmentViewModel::class.java]
         adapter = MainAdapter(this)
         binding.rv.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.rv.adapter = adapter
-
-
         viewModel.getPokemonList()
-
-
         viewModel.pokemonList.observe(viewLifecycleOwner, Observer {
             Log.d("ff", it.toString())
             adapter.submitData(lifecycle, it)
