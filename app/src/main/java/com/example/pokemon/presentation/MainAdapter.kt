@@ -1,5 +1,6 @@
 package com.example.pokemon.presentation
 
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,29 +11,30 @@ import com.bumptech.glide.Glide
 import com.example.pokemon.R
 import com.example.pokemon.data.network.responses.Result
 import com.example.pokemon.databinding.ItemBinding
+import com.example.pokemon.util.capitalizeFirstLetter
 
-class MainAdapter(private val listener: PokemonAdapterListener) : PagingDataAdapter<Result, MainAdapter.AdapterViewHolder>(COMPARATOR) {
-
-
+class MainAdapter(
+    private val listener: PokemonAdapterListener
+) : PagingDataAdapter<Result, MainAdapter.AdapterViewHolder>(COMPARATOR) {
 
     class AdapterViewHolder(item: View) : RecyclerView.ViewHolder(item) {
         private val binding = ItemBinding.bind(item)
-        fun bind(result: Result?, listener : PokemonAdapterListener, position: Int) {
+        private val context = item.context
+        fun bind(result: Result?, listener: PokemonAdapterListener, position: Int) {
             with(binding) {
-                tvPokemonName.text = result?.name?.capitalize() ?: "Pikachu"
+                tvPokemonName.text = result?.name?.capitalizeFirstLetter() ?: "Pikachu"
                 itemView.setOnClickListener {
                     if (result != null) {
                         listener.onClickPokemon(result)
                     }
                 }
-                tvPokemonId.text = "№ ${position+1}"
+                tvPokemonId.text = context.getString(R.string.pokemon_id, position + 1)
                 Glide.with(itemView)
                     .load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${position + 1}.png")
                     .into(ivPokemonImage)
             }
         }
     }
-
 
     companion object {
         private val COMPARATOR = object : DiffUtil.ItemCallback<Result>() {
@@ -53,9 +55,5 @@ class MainAdapter(private val listener: PokemonAdapterListener) : PagingDataAdap
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item, parent, false)
         return AdapterViewHolder(view)
-    }
-
-    fun updateData() {
-
     }
 }

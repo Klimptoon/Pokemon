@@ -6,7 +6,7 @@ import com.example.pokemon.domain.GetPokemonUseCase
 import javax.inject.Inject
 
 class PokemonInfoViewModelFactory @Inject constructor(
-    val getPokemonUseCase: GetPokemonUseCase,
+    private val getPokemonUseCase: GetPokemonUseCase,
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return PokemonInfoViewModel(
