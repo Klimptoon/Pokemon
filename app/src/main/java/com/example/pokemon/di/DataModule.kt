@@ -7,22 +7,17 @@ import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Singleton
 
 @Module
 class DataModule {
-
 
     @Provides
     fun providePokemonRepository(
         api: PokeApi
     ) = PokemonRepository(api = api)
 
-
-
-
     @Provides
-    fun providesPokeApi() : PokeApi {
+    fun providesPokeApi(): PokeApi {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(BASE_URL)

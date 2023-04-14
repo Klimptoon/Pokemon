@@ -9,9 +9,8 @@ import dagger.Provides
 @Module
 class DomainModule {
 
-
     @Provides
-    fun provideGetPokemonUseCase(repository: PokemonRepository) : GetPokemonUseCase {
-        return GetPokemonUseCase(repository )
+    fun provideGetPokemonUseCase(repository: PokemonRepository): GetPokemonUseCase {
+        return GetPokemonUseCase(repository)
     }
 }

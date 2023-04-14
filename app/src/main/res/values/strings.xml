@@ -16,12 +16,14 @@
     <string name="weight">Weight:</string>
     <string name="metro"> %sm</string>
     <string name="kilo"> %skg</string>
-    <string name="pokemon_id">N° 001</string>
     <string name="pokemon_type">electric</string>
     <string name="pokemon_weight">Total weight</string>
     <string name="pokemon_height">Total Height</string>
     <string name="return_screen">Return to pokemon list</string>
     <string name="try_again">Try again</string>
     <string name="no_internet_connection">No Internet connection!!!</string>
+    <string name="weight_format">%1$d g</string>
+    <string name="height_format">%1$d sm</string>
+    <string name="pokemon_id">№ %1$d</string>
 
 </resources>

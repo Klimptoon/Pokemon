@@ -1,6 +1,5 @@
 package com.example.pokemon.di
 
-import com.example.pokemon.presentation.MainActivity
 import com.example.pokemon.presentation.MainFragment
 import com.example.pokemon.presentation.PokemonInfoFragment
 import dagger.Component
