@@ -1,7 +1,6 @@
 package com.example.pokemon.presentation
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +14,7 @@ import com.example.pokemon.app.App
 import com.example.pokemon.data.network.responses.Result
 import com.example.pokemon.databinding.FragmentMainBinding
 import com.example.pokemon.util.Constants.BUNDLE_KEY
+import com.example.pokemon.util.Constants.COLUMNS
 import javax.inject.Inject
 
 
@@ -23,7 +23,7 @@ class MainFragment : Fragment(), PokemonAdapterListener {
     @Inject
     lateinit var vmFactory: MainViewModelFactory
     lateinit var viewModel: MainFragmentViewModel
-    private lateinit var adapter: MainAdapter
+    private lateinit var adapter: PokemonListAdapter
     private lateinit var binding: FragmentMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,12 +37,11 @@ class MainFragment : Fragment(), PokemonAdapterListener {
     ): View {
         binding = FragmentMainBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this, vmFactory)[MainFragmentViewModel::class.java]
-        adapter = MainAdapter(this)
-        binding.rv.layoutManager = GridLayoutManager(requireContext(), 2)
+        adapter = PokemonListAdapter(this)
+        binding.rv.layoutManager = GridLayoutManager(requireContext(), COLUMNS)
         binding.rv.adapter = adapter
         viewModel.getPokemonList()
         viewModel.pokemonList.observe(viewLifecycleOwner, Observer {
-            Log.d("ff", it.toString())
             adapter.submitData(lifecycle, it)
         })
         return binding.root
@@ -52,6 +51,5 @@ class MainFragment : Fragment(), PokemonAdapterListener {
         val bundle = Bundle()
         bundle.putString(BUNDLE_KEY, result.name)
         findNavController().navigate(R.id.action_mainFragment_to_courseFragment, bundle)
-        Log.d("ff", "жмяк жмяк ${result.url} ${result.name}")
     }
 }

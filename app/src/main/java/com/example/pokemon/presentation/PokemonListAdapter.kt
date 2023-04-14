@@ -11,18 +11,19 @@ import com.bumptech.glide.Glide
 import com.example.pokemon.R
 import com.example.pokemon.data.network.responses.Result
 import com.example.pokemon.databinding.ItemBinding
+import com.example.pokemon.util.Constants.PIKACHU
 import com.example.pokemon.util.capitalizeFirstLetter
 
-class MainAdapter(
+class PokemonListAdapter(
     private val listener: PokemonAdapterListener
-) : PagingDataAdapter<Result, MainAdapter.AdapterViewHolder>(COMPARATOR) {
+) : PagingDataAdapter<Result, PokemonListAdapter.AdapterViewHolder>(COMPARATOR) {
 
     class AdapterViewHolder(item: View) : RecyclerView.ViewHolder(item) {
         private val binding = ItemBinding.bind(item)
         private val context = item.context
         fun bind(result: Result?, listener: PokemonAdapterListener, position: Int) {
             with(binding) {
-                tvPokemonName.text = result?.name?.capitalizeFirstLetter() ?: "Pikachu"
+                tvPokemonName.text = result?.name?.capitalizeFirstLetter() ?: PIKACHU
                 itemView.setOnClickListener {
                     if (result != null) {
                         listener.onClickPokemon(result)

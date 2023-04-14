@@ -1,6 +1,6 @@
 package com.example.pokemon.presentation
 
-import android.util.Log
+
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -24,12 +24,10 @@ class PokemonInfoViewModel(
         viewModelScope.launch {
             val pokemon = getPokemonUseCase.getPokemon(name)
             val listOfTypes = mutableListOf<String>()
-            val typeOfPokemon = pokemon.data?.types?.forEach {
+            pokemon.data?.types?.forEach {
                 listOfTypes.add(it.type.name)
-                Log.d("ff", listOfTypes.toString())
             }
             _isConnected.value = true
-            Log.d("ff", typeOfPokemon.toString())
             when (pokemon) {
                 is Resourse.Success -> {
                     val poke = PokemonInfo(

@@ -69,7 +69,7 @@ class PokemonInfoFragment : Fragment() {
                 binding.tvWhenNoConnection.visibility = View.VISIBLE
                 binding.returnButton.visibility = View.GONE
                 binding.tryButton.setOnClickListener {
-                    pokemonName?.let { it1 -> viewModel.getPokemonInfo(it1) }
+                    pokemonName?.let { name -> viewModel.getPokemonInfo(name) }
                 }
             } else {
                 binding.tryButton.visibility = View.GONE
