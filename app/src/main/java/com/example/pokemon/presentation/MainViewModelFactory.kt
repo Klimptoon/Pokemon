@@ -8,11 +8,9 @@ import com.example.pokemon.util.Constants.UNCHECKED
 class MainViewModelFactory(
     val pokemonRepository: PokemonRepository
 ) : ViewModelProvider.Factory {
+
     @Suppress(UNCHECKED)
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return MainFragmentViewModel(
-            pokemonRepository,
-        ) as T
+        return MainFragmentViewModel(pokemonRepository) as T
     }
-
 }

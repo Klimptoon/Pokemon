@@ -5,15 +5,10 @@ import com.example.pokemon.presentation.MainViewModelFactory
 import dagger.Module
 import dagger.Provides
 
-
 @Module
 class AppModule {
     @Provides
-    fun provideMainViewModelFactory(
-        pokemonRepository: PokemonRepository,
-    ): MainViewModelFactory {
-        return MainViewModelFactory(
-            pokemonRepository = pokemonRepository
-        )
+    fun provideMainViewModelFactory(pokemonRepository: PokemonRepository,): MainViewModelFactory {
+        return MainViewModelFactory(pokemonRepository = pokemonRepository)
     }
 }

@@ -5,7 +5,6 @@ import com.example.pokemon.domain.GetPokemonUseCase
 import dagger.Module
 import dagger.Provides
 
-
 @Module
 class DomainModule {
 

@@ -7,8 +7,9 @@ import com.example.pokemon.data.network.responses.Result
 import kotlinx.coroutines.launch
 
 class MainFragmentViewModel(
-    private val pokemonRepository: PokemonRepository,
+    private val pokemonRepository: PokemonRepository
 ) : ViewModel() {
+
     private val _pokemonList = MutableLiveData<PagingData<Result>>()
     var pokemonList: LiveData<PagingData<Result>> = _pokemonList
 

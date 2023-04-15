@@ -12,9 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class DataModule {
 
     @Provides
-    fun providePokemonRepository(
-        api: PokeApi
-    ) = PokemonRepository(api = api)
+    fun providePokemonRepository(api: PokeApi) = PokemonRepository(api = api)
 
     @Provides
     fun providesPokeApi(): PokeApi {
