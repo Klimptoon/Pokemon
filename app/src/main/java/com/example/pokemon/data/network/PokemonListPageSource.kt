@@ -28,5 +28,4 @@ class PokemonListPageSource(
             LoadResult.Error(throwable = e)
         }
     }
-
 }

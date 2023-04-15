@@ -17,7 +17,6 @@ import javax.inject.Inject
 
 class PokemonInfoFragment : Fragment() {
 
-
     @Inject
     lateinit var vmFactory: PokemonInfoViewModelFactory
     lateinit var viewModel: PokemonInfoViewModel
@@ -26,7 +25,7 @@ class PokemonInfoFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (activity?.applicationContext as App).appComponent.inject2(this)
+        (activity?.applicationContext as App).appComponent.inject(this)
     }
 
     override fun onCreateView(
@@ -49,16 +48,20 @@ class PokemonInfoFragment : Fragment() {
     private fun init() {
         val pokemonName = arguments?.getString(BUNDLE_KEY)
         pokemonName?.let { viewModel.getPokemonInfo(it) }
-        viewModel.pokemonInfo.observe(viewLifecycleOwner) {
+        viewModel.pokemonInfo.observe(viewLifecycleOwner) { pokemon ->
             with(binding) {
-                val weightString = getString(R.string.weight_format, it.weight)
-                val heightString = getString(R.string.height_format, it.height)
-                tvWeightNumber.text = weightString
-                tvHeightNumber.text = heightString
-                tvPokemonName.text = it.pokemonName
-                tvPokemonType.text = it.type.toString()
+                tvWeightNumber.text = getString(
+                    R.string.weight_format,
+                    pokemon.weight
+                )
+                tvHeightNumber.text = getString(
+                    R.string.height_format,
+                    pokemon.height
+                )
+                tvPokemonName.text = pokemon.pokemonName
+                tvPokemonType.text = pokemon.type.toString()
                 Glide.with(requireView())
-                    .load(it.image)
+                    .load(pokemon.image)
                     .into(ivPokemonImage)
             }
         }
@@ -69,7 +72,7 @@ class PokemonInfoFragment : Fragment() {
                 binding.tvWhenNoConnection.visibility = View.VISIBLE
                 binding.returnButton.visibility = View.GONE
                 binding.tryButton.setOnClickListener {
-                    pokemonName?.let { name -> viewModel.getPokemonInfo(name) }
+                    pokemonName?.let { viewModel.getPokemonInfo(pokemonName) }
                 }
             } else {
                 binding.tryButton.visibility = View.GONE
@@ -78,5 +81,4 @@ class PokemonInfoFragment : Fragment() {
             }
         }
     }
-
 }

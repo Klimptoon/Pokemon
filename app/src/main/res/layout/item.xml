@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="200dp"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="200dp"
+    android:layout_height="wrap_content"
     app:cardBackgroundColor="@color/black"
     app:cardCornerRadius="@dimen/space_8dp"
     app:cardUseCompatPadding="true">
@@ -31,18 +31,19 @@
                 android:id="@+id/tv_pokemon_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space_8dp"
                 android:textColor="@color/id_pokemon"
                 android:textSize="@dimen/text_12sp"
-                android:layout_margin="@dimen/space_8dp" />
+                tools:text="№ 001" />
 
             <TextView
                 android:id="@+id/tv_pokemon_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/name_pokemon"
-                android:textSize="@dimen/text_20sp"
                 android:layout_marginStart="@dimen/space_8dp"
                 android:layout_marginBottom="@dimen/space_8dp"
+                android:textColor="@color/name_pokemon"
+                android:textSize="@dimen/text_20sp"
                 tools:text="Charmander" />
 
         </LinearLayout>

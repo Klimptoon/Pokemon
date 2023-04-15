@@ -17,12 +17,11 @@ import com.example.pokemon.util.Constants.BUNDLE_KEY
 import com.example.pokemon.util.Constants.COLUMNS
 import javax.inject.Inject
 
-
 class MainFragment : Fragment(), PokemonAdapterListener {
 
     @Inject
     lateinit var vmFactory: MainViewModelFactory
-    lateinit var viewModel: MainFragmentViewModel
+    private lateinit var viewModel: MainFragmentViewModel
     private lateinit var adapter: PokemonListAdapter
     private lateinit var binding: FragmentMainBinding
 
@@ -38,8 +37,8 @@ class MainFragment : Fragment(), PokemonAdapterListener {
         binding = FragmentMainBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this, vmFactory)[MainFragmentViewModel::class.java]
         adapter = PokemonListAdapter(this)
-        binding.rv.layoutManager = GridLayoutManager(requireContext(), COLUMNS)
-        binding.rv.adapter = adapter
+        binding.pokemonRecyclerView.layoutManager = GridLayoutManager(requireContext(), COLUMNS)
+        binding.pokemonRecyclerView.adapter = adapter
         viewModel.getPokemonList()
         viewModel.pokemonList.observe(viewLifecycleOwner, Observer {
             adapter.submitData(lifecycle, it)

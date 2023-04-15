@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pokemon.data.network.models.PokemonInfo
 import com.example.pokemon.domain.GetPokemonUseCase
-import com.example.pokemon.util.Resourse
+import com.example.pokemon.util.Resource
 import kotlinx.coroutines.launch
 
 class PokemonInfoViewModel(
@@ -29,7 +29,7 @@ class PokemonInfoViewModel(
             }
             _isConnected.value = true
             when (pokemon) {
-                is Resourse.Success -> {
+                is Resource.Success -> {
                     val poke = PokemonInfo(
                         height = pokemon.data!!.height,
                         weight = pokemon.data.weight,
@@ -40,11 +40,10 @@ class PokemonInfoViewModel(
                     )
                     _pokemonInfo.value = poke
                 }
-                is Resourse.Error -> {
+                is Resource.Error -> {
                     _isConnected.value = false
                 }
             }
         }
     }
-
 }
