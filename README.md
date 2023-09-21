@@ -8,7 +8,7 @@ ____
 - Поход в сеть Retrofit
 - Пагинация - Jetpack Paging 3
 ____
-Демонстрация работы:https://youtube.com/shorts/AxMC_bJ9Cmw](https://youtube.com/shorts/HzTs48ec69E?feature=share
+Демонстрация работы: https://youtube.com/shorts/AxMC_bJ9Cmw
 экран - список покемонов, который подгружается с помощью пагинации из PokeApi
 ____
 
