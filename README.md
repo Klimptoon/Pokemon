@@ -8,9 +8,8 @@ ____
 - Поход в сеть Retrofit
 - Пагинация - Jetpack Paging 3
 ____
-Демонстрация работы:
-https://youtube.com/shorts/HzTs48ec69E?feature=share
-- 1 экран - курс валют для определенного областного центра РБ из Bealarusbank Api
+Демонстрация работы:https://youtube.com/shorts/AxMC_bJ9Cmw](https://youtube.com/shorts/HzTs48ec69E?feature=share
+экран - список покемонов, который подгружается с помощью пагинации из PokeApi
 ____
 
 Разработчики:
